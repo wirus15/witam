@@ -1,15 +1,19 @@
 const HipChatRoomNotification = require('hipchat-room-notification-api');
 const config = require('./config');
 const jsdom = require("jsdom");
+const moment = require('moment');
 const { JSDOM } = jsdom;
 
-JSDOM.fromURL(`https://www.wykop.pl/tag/wpisy/${config.tag}/`).then((result) => {
-    let entries;
-    const getPoints = (node) => node.querySelector('p.vC').getAttribute('data-vc');
-    const hasImg = (node) => Boolean(node.querySelector('.media-content > a[href$=".jpg"], .media-content > a[href$=".png"], .media-content > a[href$=".gif"]'));
-    const fromYesterday = (node) => true;
+const yesterday = moment().subtract(1 ,'day');
 
-    entries = Array.from(result.window.document.querySelectorAll('#itemsStream > .entry.iC'));
+const getPoints = (node) => node.querySelector('p.vC').getAttribute('data-vc');
+const getDate = (node) => node.querySelector('time').getAttribute('datetime');
+const hasImg = (node) => Boolean(node.querySelector('.media-content > a[href$=".jpg"], .media-content > a[href$=".png"], .media-content > a[href$=".gif"]'));
+const fromYesterday = (node) => moment(getDate(node)).isSame(yesterday, 'day');
+
+JSDOM.fromURL(`https://www.wykop.pl/tag/wpisy/${config.tag}/`).then((result) => {
+    let entries = Array.from(result.window.document.querySelectorAll('#itemsStream > .entry.iC'));
+
     entries = entries.filter(hasImg);
     entries = entries.filter(fromYesterday);
     entries.sort((a, b) => getPoints(b) - getPoints(a));

@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "hipchat-room-notification-api": "^2.0.0",
-    "jsdom": "^12.2.0"
+    "jsdom": "^12.2.0",
+    "moment": "^2.22.2",
+    "momentjs": "^2.0.0"
   }
 }
