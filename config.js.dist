@@ -1,0 +1,8 @@
+module.exports = {
+    domain: '',
+    roomId: '',
+    authToken: '',
+    tag: '',
+    message: 'Witam (awesome)',
+    color: 'purple'
+};
