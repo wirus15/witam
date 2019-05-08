@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "@slack/client": "^4.8.0",
-    "moment": "^2.22.2",
     "rxjs": "^6.5.1",
     "xmlhttprequest": "^1.8.0"
   }
