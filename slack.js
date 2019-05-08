@@ -1,7 +1,7 @@
 const {WebClient} = require('@slack/client');
 
 module.exports = (config) => {
-    const client = new WebClient(config.authToken);
+    const client = new WebClient(config.slackAuthToken);
 
     const send = (imgUrl) => {
         client.chat.postMessage({

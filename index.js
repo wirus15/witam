@@ -7,7 +7,7 @@ const {XMLHttpRequest} = require('xmlhttprequest');
 const config = require('./config');
 const slack = require('./slack')(config);
 const yesterday = moment().subtract(1 ,'day');
-const url = 'https://a2.wykop.pl/Tags/Entries/nsfw/page/1/appkey/K3o5xvChwR';
+const url = `https://a2.wykop.pl/Tags/Entries/${config.tag}/page/1/appkey/${config.wykopApiKey}`;
 const createXHR = () => new XMLHttpRequest();
 
 ajax({url, createXHR}).pipe(
